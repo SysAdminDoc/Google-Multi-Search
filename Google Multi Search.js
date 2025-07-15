@@ -1,13 +1,17 @@
 // ==UserScript==
-// @name         Google Site Search Buttons (Configurable)
+// @name         Google Multi Search
+// @namespace    https://github.com/SysAdminDoc/Google-Multi-Search
 // @version      2.2
 // @description  Adds a configurable menu of search buttons to Google. Enable, disable, or add your own.
-// @author       Gemini
+// @author       Matthew Parker
 // @match        https://www.google.com/search*
 // @grant        GM_addStyle
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @run-at       document-idle
+// @license      MIT
+// @updateURL    https://github.com/SysAdminDoc/Google-Multi-Search/raw/refs/heads/main/Google%20Multi%20Search.js
+// @downloadURL  https://github.com/SysAdminDoc/Google-Multi-Search/raw/refs/heads/main/Google%20Multi%20Search.js
 // ==/UserScript==
 
 (function() {
@@ -38,7 +42,6 @@
         const linkContainer = document.querySelector('[role="navigation"] [role="list"]');
         if (!linkContainer) return;
 
-        // **FIXED**: Correctly selects the search input/textarea by its 'name' attribute.
         const queryInput = document.querySelector('textarea[name="q"], input[name="q"]');
         const currentFullQuery = queryInput ? queryInput.value : '';
         if (!currentFullQuery) return;
@@ -126,7 +129,6 @@
                     </label>
                     <button data-index="${index}">Remove</button>
                 `;
-                // **FIXED**: Correctly selects checkbox and updates the temporary array.
                 siteDiv.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
                     tempSites[index].enabled = e.target.checked;
                 });
